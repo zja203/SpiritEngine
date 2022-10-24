@@ -6,3 +6,4 @@ bin-int/
 **/Makefile
 **/*.vcxproj*
 *.sln
+tags
