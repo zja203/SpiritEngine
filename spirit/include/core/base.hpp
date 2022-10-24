@@ -17,3 +17,5 @@
 #else
 	#error Spirit only supports (64 bit) Windows and Linux!
 #endif
+
+#define BIT(x) (1 <<x )
