@@ -1,0 +1,8 @@
+# Binaries
+bin/
+bin-int/
+
+# Build/IDE Files
+**/Makefile
+**/*.vcxproj*
+*.sln
