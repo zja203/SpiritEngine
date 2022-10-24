@@ -18,6 +18,7 @@ project "SpiritEngine"
 
 	includedirs {
 		"include",
+		".",
 		"vendor/include"
 	}
 
@@ -25,11 +26,32 @@ project "SpiritEngine"
 		systemversion "latest"
 
 		defines {
+			"_GLFW_WIN32",
 			"_CRT_SECURE_NO_WARNINGS"
+		}
+
+		files {
+			"platform/windows/src/**.cpp",
+			"platform/windows/**.hpp"
+		}
+
+		links {
+			"GLFW",
+			"opengl32.lib"
 		}
 
 	filter "system:linux"
 		systemversion "latest"
+		links { "pthread", "glfw"}
+		
+		files {
+			"platform/linux/src/**.cpp",
+			"platform/linux/**.hpp"
+		}
+
+		defines {
+			"_GLFW_X11"
+		}
 
 	filter { "system:windows", "configurations:Debug" }
 		buildoptions "/MTd"
@@ -41,7 +63,10 @@ project "SpiritEngine"
 		runtime "Debug"
 		symbols "on"
 		optimize "off"
-		defines "SPRT_DEBUG"
+		defines {
+			"SPRT_DEBUG",
+			"SPRT_ENABLE_ASSERTS"
+		}
 
 	filter { "system:windows", "configurations:Release" }
 		buildoptions "/MT"

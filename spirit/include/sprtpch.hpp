@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
-#include "core/log.hpp"
+#include "log.hpp"
 #include "core/base.hpp"
 
 #if defined(SPRT_PLATFORM_WINDOWS)

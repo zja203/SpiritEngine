@@ -26,8 +26,29 @@ project "TestApp"
 	filter "system:windows"
 		systemversion "latest"
 
+		files {
+			"platform/windows/src/**.cpp",
+			"platform/windows/**.hpp",
+		}
+
+		links {
+			"GLFW",
+			"opengl32.lib"
+		}
+
 	filter "system:linux"
 		systemversion "latest"
+
+		links {"pthread", "GL", "glfw"}
+
+		files {
+			"platform/linux/src/**.cpp",
+			"platform/linux/**.hpp",
+		}
+		
+		defines {
+			"_GLFW_X11",
+		}
 
 	filter "configurations:Debug"
 		defines "SPRT_DEBUG"
