@@ -7,6 +7,9 @@ project "SpiritEngine"
 	targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "include/sprtpch.hpp"
+	pchsource "src/sprtpch.cpp"
+
 	files {
 		"src/**.cpp",
 		"include/**.hpp",
