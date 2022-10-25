@@ -39,7 +39,7 @@ project "TestApp"
 	filter "system:linux"
 		systemversion "latest"
 
-		links {"pthread", "GL", "glfw"}
+		links {"pthread", "GL", "glfw", "GLEW", "GLU"}
 
 		files {
 			"platform/linux/src/**.cpp",
@@ -51,7 +51,10 @@ project "TestApp"
 		}
 
 	filter "configurations:Debug"
-		defines "SPRT_DEBUG"
+		defines {
+			"SPRT_DEBUG",
+			"SPRT_ENABLE_ASSERTS"
+		}
 		runtime "Debug"
 		symbols "on"
 

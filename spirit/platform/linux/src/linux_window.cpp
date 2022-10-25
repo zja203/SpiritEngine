@@ -1,6 +1,8 @@
 #include "sprtpch.hpp"
+#include <GL/glew.h>
 #include "events/app_event.hpp"
 #include "platform/linux/linux_window.hpp"
+#include "core/application.hpp"
 
 namespace Spirit {
 	static bool s_GLFWInitialized = false;
@@ -34,6 +36,10 @@ namespace Spirit {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = glewInit();
+		if (status != GLEW_OK) {
+			SPRT_CORE_ERROR("glew error");
+		}
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 
 		// Set GLFW callbacks

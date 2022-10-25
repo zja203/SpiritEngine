@@ -5,6 +5,7 @@
 
 #include "log.hpp"
 #include "core/base.hpp"
+#include "layer.hpp"
 
 #if defined(SPRT_PLATFORM_WINDOWS)
 	#include <Windows.h>

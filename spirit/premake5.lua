@@ -42,7 +42,7 @@ project "SpiritEngine"
 
 	filter "system:linux"
 		systemversion "latest"
-		links { "pthread", "glfw"}
+		links { "pthread", "glfw", "GLEW", "GLU"}
 		
 		files {
 			"platform/linux/src/**.cpp",
