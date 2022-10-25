@@ -13,7 +13,8 @@ project "SpiritEngine"
 	files {
 		"src/**.cpp",
 		"include/**.hpp",
-		"vendor/**"
+		"vendor/**",
+		"platform/opengl/**"
 	}
 
 	includedirs {

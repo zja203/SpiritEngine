@@ -64,6 +64,7 @@ namespace Spirit {
 	}
 
 	void LinuxWindow::OnUpdate() {
+		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
 	}
 }

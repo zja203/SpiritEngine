@@ -4,18 +4,24 @@
 #include "log.hpp"
 #include <GL/glew.h>
 #include <GL/glut.h>
+#include "renderer/shader.hpp"
+#include <filesystem>
 
 namespace Spirit {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 	Application::Application() {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->setEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Specification.WorkingDir = "/home/zack/Documents/proj/spirit";
+		std::filesystem::current_path(m_Specification.WorkingDir);
+		SPRT_CORE_INFO("Current Directory: {0}", m_Specification.WorkingDir);
 	}
 
 	Application::~Application() {}
 
 	void Application::pushLayer(Layer *layer) {
 		m_LayerStack.pushLayer(layer);
+		layer->OnAttach();
 	}
 	
 	void Application::pushOverlay(Layer *layer) {

@@ -4,5 +4,7 @@
 
 #include "core/application.hpp"
 #include "log.hpp"
+#include "renderer/shader.hpp"
+#include "platform/opengl/opengl_shader.hpp"
 
 #include "core/entrypoint.hpp"
