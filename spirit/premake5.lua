@@ -10,10 +10,12 @@ project "SpiritEngine"
 	files {
 		"src/**.cpp",
 		"include/**.hpp",
+		"vendor/**"
 	}
 
 	includedirs {
-		"include"
+		"include",
+		"vendor/include"
 	}
 
 	filter "system:windows"

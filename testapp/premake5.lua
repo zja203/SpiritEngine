@@ -20,6 +20,7 @@ project "TestApp"
 		"include",
 		"%{wks.location}/spirit/include",
 		"%{wks.location}/spirit",
+		"%{wks.location}/spirit/vendor/include"
 	}
 
 	filter "system:windows"

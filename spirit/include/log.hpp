@@ -1,0 +1,32 @@
+#pragma once
+
+#include "core/base.hpp"
+#include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
+
+namespace Spirit {
+	class SPIRIT_API Log {
+		public:
+			static void Init();
+
+			inline static std::shared_ptr<spdlog::logger>& getCoreLogger() { return s_CoreLogger; }
+			inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return s_ClientLogger; }
+		private:
+			static std::shared_ptr<spdlog::logger> s_CoreLogger;
+			static std::shared_ptr<spdlog::logger> s_ClientLogger;
+	};
+}
+
+// Core log macros
+#define SPRT_CORE_TRACE(...)    ::Spirit::Log::getCoreLogger()->trace(__VA_ARGS__)
+#define SPRT_CORE_INFO(...)     ::Spirit::Log::getCoreLogger()->info(__VA_ARGS__)
+#define SPRT_CORE_WARN(...)     ::Spirit::Log::getCoreLogger()->warn(__VA_ARGS__)
+#define SPRT_CORE_ERROR(...)    ::Spirit::Log::getCoreLogger()->error(__VA_ARGS__)
+#define SPRT_CORE_FATAL(...)    ::Spirit::Log::getCoreLogger()->fatal(__VA_ARGS__)
+
+// Client log macros
+#define SPRT_TRACE(...)        ::Spirit::Log::getClientLogger()->trace(__VA_ARGS__)
+#define SPRT_INFO(...)         ::Spirit::Log::getClientLogger()->info(__VA_ARGS__)
+#define SPRT_WARN(...)         ::Spirit::Log::getClientLogger()->warn(__VA_ARGS__)
+#define SPRT_ERROR(...)        ::Spirit::Log::getClientLogger()->error(__VA_ARGS__)
+#define SPRT_FATAL(...)        ::Spirit::Log::getClientLogger()->fatal(__VA_ARGS__)
