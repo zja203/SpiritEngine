@@ -19,14 +19,6 @@ class TestLayer : public Spirit::Layer {
 				-0.5f,  0.5f
 			};
 
-			/* unsigned int buffer; */
-			/* glGenBuffers(1, &buffer); */
-			/* glBindBuffer(GL_ARRAY_BUFFER, buffer); */
-			/* glBufferData(GL_ARRAY_BUFFER, 6*sizeof(float), positions, GL_STATIC_DRAW); */
-
-			/* glEnableVertexAttribArray(0); */
-			/* glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); */
-
 			m_va = VertexArray::Create();
 			m_vb = VertexBuffer::Create(positions, sizeof(positions));
 			m_vb->setLayout(Spirit::BufferLayout({{ShaderDataType::Float2,"position"}}));

@@ -1,6 +1,5 @@
 #include "sprtpch.hpp"
 #include "platform/opengl/opengl_vertex_array.hpp"
-
 #include <GL/glew.h>
 
 namespace Spirit {

@@ -22,11 +22,11 @@ namespace Spirit {
 #define SPRT_CORE_INFO(...)     ::Spirit::Log::getCoreLogger()->info(__VA_ARGS__)
 #define SPRT_CORE_WARN(...)     ::Spirit::Log::getCoreLogger()->warn(__VA_ARGS__)
 #define SPRT_CORE_ERROR(...)    ::Spirit::Log::getCoreLogger()->error(__VA_ARGS__)
-#define SPRT_CORE_CRITICAL(...)    ::Spirit::Log::getCoreLogger()->critical(__VA_ARGS__)
+#define SPRT_CORE_CRITICAL(...) ::Spirit::Log::getCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define SPRT_TRACE(...)        ::Spirit::Log::getClientLogger()->trace(__VA_ARGS__)
 #define SPRT_INFO(...)         ::Spirit::Log::getClientLogger()->info(__VA_ARGS__)
 #define SPRT_WARN(...)         ::Spirit::Log::getClientLogger()->warn(__VA_ARGS__)
 #define SPRT_ERROR(...)        ::Spirit::Log::getClientLogger()->error(__VA_ARGS__)
-#define SPRT_CRITICAL(...)        ::Spirit::Log::getClientLogger()->critical(__VA_ARGS__)
+#define SPRT_CRITICAL(...)     ::Spirit::Log::getClientLogger()->critical(__VA_ARGS__)

@@ -1,8 +1,6 @@
 #include "sprtpch.hpp"
 #include "renderer/buffer.hpp"
-
 #include "renderer/renderer.hpp"
-
 #include "platform/opengl/opengl_buffer.hpp"
 
 namespace Spirit {

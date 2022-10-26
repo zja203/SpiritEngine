@@ -52,7 +52,6 @@ namespace Spirit {
 		std::vector<GLuint> shaderIDs;
 		for (auto [shaderType, src] : m_OpenGLShaders) {
 			GLuint shaderID = shaderIDs.emplace_back(glCreateShader(shaderType));
-			/* const char* const* shaderSrc = (const char* const*)src.c_str(); */
 			const char *shaderSrc = src.c_str();
 			glShaderSource(shaderID, 1, &shaderSrc, nullptr);
 			glCompileShader(shaderID);

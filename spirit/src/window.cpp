@@ -1,5 +1,6 @@
 #include "window.hpp"
 #include "platform/linux/linux_window.hpp"
+#include "platform/windows/windows_window.hpp"
 
 namespace Spirit {
 	Window* Window::Create(const WindowProps& props) {
