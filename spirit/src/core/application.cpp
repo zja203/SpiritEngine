@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 #include <GL/glut.h>
 #include "renderer/shader.hpp"
+#include "renderer/renderer.hpp"
 #include <filesystem>
 
 namespace Spirit {
@@ -15,6 +16,7 @@ namespace Spirit {
 		m_Specification.WorkingDir = "/home/zack/Documents/proj/spirit";
 		std::filesystem::current_path(m_Specification.WorkingDir);
 		SPRT_CORE_INFO("Current Directory: {0}", m_Specification.WorkingDir);
+		Renderer::Init();
 	}
 
 	Application::~Application() {}

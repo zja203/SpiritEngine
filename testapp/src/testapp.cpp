@@ -2,73 +2,70 @@
 #include <GL/glew.h>
 #include <filesystem>
 
-static void GLClearError() {
-	while(glGetError() != GL_NO_ERROR);
-}
-
-static void GLCheckError() {
-	while(GLenum error = glGetError()) {
-		SPRT_ERROR("[OpenGL Error] {0}", error);
-	}
-}
+using Spirit::Ref;
+using Spirit::VertexBuffer;
+using Spirit::IndexBuffer;
+using Spirit::VertexArray;
+using Spirit::ShaderDataType;
+using Spirit::Shader;
 
 class TestLayer : public Spirit::Layer {
 	public:
-		TestLayer() : Layer("Test") { }
+		TestLayer() : Layer("Test") {
+			float positions[] {
+				-0.5f, -0.5f,
+				 0.5f, -0.5f,
+				 0.5f,  0.5f,
+				-0.5f,  0.5f
+			};
+
+			/* unsigned int buffer; */
+			/* glGenBuffers(1, &buffer); */
+			/* glBindBuffer(GL_ARRAY_BUFFER, buffer); */
+			/* glBufferData(GL_ARRAY_BUFFER, 6*sizeof(float), positions, GL_STATIC_DRAW); */
+
+			/* glEnableVertexAttribArray(0); */
+			/* glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); */
+
+			m_va = VertexArray::Create();
+			m_vb = VertexBuffer::Create(positions, sizeof(positions));
+			m_vb->setLayout(Spirit::BufferLayout({{ShaderDataType::Float2,"position"}}));
+			m_va->addVertexBuffer(m_vb);
+
+			uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
+			Ref<IndexBuffer> m_ib = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+			m_va->setIndexBuffer(m_ib);
+
+			m_Shader = Spirit::Shader::Create("tri.glsl");
+			m_Shader->Bind();
+		}
 
 		void OnUpdate() override {
-			// SPRT_INFO("TestLater::Update");
-			glDrawArrays(GL_TRIANGLES, 0, 3);
-			GLCheckError();
+			Spirit::Renderer::Submit(m_Shader, m_va);
 		}
 
 		void OnAttach() override {
-			float positions[] {
-				-0.5f, -0.5f,
-					0.5f, -0.5f,
-					0.0f, 0.5f
-			};
-
-			unsigned int buffer;
-			glGenBuffers(1, &buffer);
-			glBindBuffer(GL_ARRAY_BUFFER, buffer);
-			glBufferData(GL_ARRAY_BUFFER, 6*sizeof(float), positions, GL_STATIC_DRAW);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-
-			unsigned int program = glCreateProgram();
-			unsigned int vs = Spirit::OpenGLShader("tri.vert", GL_VERTEX_SHADER).m_Id;
-			unsigned int fs = Spirit::OpenGLShader("tri.frag", GL_FRAGMENT_SHADER).m_Id;
-			SPRT_TRACE("VERT: {0}", vs);
-			SPRT_TRACE("FRAG: {0}", fs);
-
-			glAttachShader(program, vs);
-			glAttachShader(program, fs);
-			glLinkProgram(program);
-			glValidateProgram(program);
-
-			glDeleteShader(vs);
-			glDeleteShader(fs);
-
-			glUseProgram(program);
 		}
-		
+
 		void OnDetach() override {
 		}
 
 		void OnEvent(Spirit::Event& event) override {
 			SPRT_TRACE("{0}", event);
 		}
+	private:
+		Ref<Shader> m_Shader;
+		Ref<VertexBuffer> m_vb;
+		Ref<VertexArray> m_va;
 };
 
 class Sandbox : public Spirit::Application {
-public:
-	Sandbox() {
-		pushLayer(new TestLayer());
-	}
+	public:
+		Sandbox() {
+			pushLayer(new TestLayer());
+		}
 
-	~Sandbox() { }
+		~Sandbox() { }
 };
 
 Spirit::Application* Spirit::CreateApplication() {
