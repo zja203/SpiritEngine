@@ -31,6 +31,7 @@ namespace Spirit {
 			void Run();
 
 			void OnEvent(Event& e);
+			bool OnWindowResize(WindowResizeEvent& e);
 			void pushLayer(Layer *layer);
 			void pushOverlay(Layer *layer);
 
@@ -43,6 +44,7 @@ namespace Spirit {
 			bool OnWindowClose(WindowCloseEvent& e);
 			std::unique_ptr<Window> m_Window;
 			bool m_Running = true;
+			bool m_Minimized = false;
 			LayerStack m_LayerStack;
 	};
 

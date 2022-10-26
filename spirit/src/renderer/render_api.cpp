@@ -12,7 +12,7 @@ namespace Spirit {
 			case RenderAPI::API::OpenGL:  return CreateScope<OpenGLRenderAPI>();
 		}
 
-		SPRT_CORE_ASSERT(false, "Unknown RendererAPI!");
+		SPRT_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 }

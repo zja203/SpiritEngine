@@ -10,7 +10,7 @@ namespace Spirit {
 			case RenderAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(size);
 		}
 
-		SPRT_CORE_ASSERT(false, "Unknown RendererAPI!");
+		SPRT_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -20,7 +20,7 @@ namespace Spirit {
 			case RenderAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(vertices, size);
 		}
 
-		SPRT_CORE_ASSERT(false, "Unknown RendererAPI!");
+		SPRT_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -30,7 +30,7 @@ namespace Spirit {
 			case RenderAPI::API::OpenGL:  return CreateRef<OpenGLIndexBuffer>(indices, size);
 		}
 
-		SPRT_CORE_ASSERT(false, "Unknown RendererAPI!");
+		SPRT_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 }

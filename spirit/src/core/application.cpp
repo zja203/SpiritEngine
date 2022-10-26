@@ -25,7 +25,7 @@ namespace Spirit {
 		m_LayerStack.pushLayer(layer);
 		layer->OnAttach();
 	}
-	
+
 	void Application::pushOverlay(Layer *layer) {
 		m_LayerStack.pushOverlay(layer);
 	}
@@ -33,12 +33,25 @@ namespace Spirit {
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
 			(*--it)->OnEvent(e);
 			if (e.Handled)
 				break;
 		}
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e) {
+		if (e.getWidth() == 0 || e.getHeight() == 0) {
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.getWidth(), e.getHeight());
+
+		return false;
 	}
 
 	void Application::Run() {
@@ -50,6 +63,7 @@ namespace Spirit {
 			m_Window->OnUpdate();
 		}
 	}
+
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
 		m_Running = false;
 		return true;

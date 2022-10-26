@@ -43,7 +43,9 @@ class TestLayer : public Spirit::Layer {
 		}
 
 		void OnEvent(Spirit::Event& event) override {
-			SPRT_TRACE("{0}", event);
+			if(event.getEventType() != Spirit::EventType::WindowResize) {
+				SPRT_TRACE("{0}", event);
+			}
 		}
 	private:
 		Ref<Shader> m_Shader;
