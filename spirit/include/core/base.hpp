@@ -25,6 +25,9 @@
 #ifdef SPRT_ENABLE_ASSERTS
        #define SPRT_ASSERT(x, ...) { if(!(x)) { SPRT_ERROR("Assertion Failed: {0}", __VA_ARGS__); SPRT_BREAKDEBUGGER(); } }
        #define SPRT_CORE_ASSERT(x, ...) { if(!(x)) { SPRT_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); SPRT_BREAKDEBUGGER; } }
+#else
+	#define SPRT_ASSRT(x, ...)
+	#define SPRT_CORE_ASSERT(x, ...)
 #endif
 
 #define BIT(x) (1 <<x )
