@@ -14,6 +14,7 @@
 	#else
 		#define SPIRIT_API __declspec(dllimport)
 	#endif
+	#define SPRT_BREAKDEBUGGER __debugbreak();
 #elif defined(SPRT_PLATFORM_LINUX)
 	#define SPIRIT_API
 	#include <signal.h>
