@@ -13,6 +13,8 @@ namespace Spirit {
 			virtual void Unbind() const override;
 
 			virtual const std::string& getName() const override { return m_Name; }
+
+			virtual void SetUniformMat4f(const std::string& name, const glm::mat4& matrix) const override;
 		private:
 			std::string readShader(const std::string& path);
 			std::unordered_map<unsigned int, std::string> Preprocess(const std::string& source);

@@ -98,4 +98,9 @@ namespace Spirit {
 	void OpenGLShader::Unbind() const {
 		glUseProgram(0);
 	}
+
+	void OpenGLShader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix) const {
+		// TODO: Make GetUniformLocation member function
+		glUniformMatrix4fv(glGetUniformLocation(m_RendererID, name.c_str()), 1, GL_FALSE, &matrix[0][0]);
+	}
 }

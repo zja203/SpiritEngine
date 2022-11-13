@@ -1,5 +1,7 @@
 #include <Spirit.hpp>
 #include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <filesystem>
 
 using Spirit::Ref;
@@ -19,6 +21,11 @@ class TestLayer : public Spirit::Layer {
 				-0.5f,  0.5f
 			};
 
+			// First 2 numbers -aspect to +aspect 1
+			// Second 2, the second.
+			// So for 16:9, +-1.77 and +-1.
+			glm::mat4 proj = glm::ortho(-1.77f, 1.77f, -1.0f, 1.0f, -1.0f, 1.0f);
+
 			m_va = VertexArray::Create();
 			m_vb = VertexBuffer::Create(positions, sizeof(positions));
 			m_vb->setLayout(Spirit::BufferLayout({{ShaderDataType::Float2,"position"}}));
@@ -30,6 +37,7 @@ class TestLayer : public Spirit::Layer {
 
 			m_Shader = Spirit::Shader::Create("tri.glsl");
 			m_Shader->Bind();
+			m_Shader->SetUniformMat4f("u_MVP", proj);
 		}
 
 		void OnUpdate() override {
