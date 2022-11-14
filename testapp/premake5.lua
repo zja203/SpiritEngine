@@ -31,6 +31,11 @@ project "TestApp"
 			"platform/windows/**.hpp",
 		}
 
+		removefiles {
+			"include/sprtpch.hpp",
+			"src/sprtpch.cpp"
+		}
+
 		links {
 			"GLFW",
 			"opengl32.lib"

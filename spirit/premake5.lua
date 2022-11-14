@@ -7,9 +7,6 @@ project "SpiritEngine"
 	targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "include/sprtpch.hpp"
-	pchsource "src/sprtpch.cpp"
-
 	files {
 		"src/**.cpp",
 		"include/**.hpp",
@@ -25,6 +22,7 @@ project "SpiritEngine"
 
 	filter "system:windows"
 		systemversion "latest"
+		staticruntime "on"
 
 		defines {
 			"_GLFW_WIN32",
@@ -36,14 +34,23 @@ project "SpiritEngine"
 			"platform/windows/**.hpp"
 		}
 
+		removefiles {
+			"include/sprtpch.hpp",
+			"src/sprtpch.cpp"
+		}
+
 		links {
 			"GLFW",
+			"GLEW",
 			"opengl32.lib"
 		}
 
 	filter "system:linux"
 		systemversion "latest"
 		links { "pthread", "glfw", "GLEW", "GLU"}
+
+		pchheader "include/sprtpch.hpp"
+		pchsource "src/sprtpch.cpp"
 		
 		files {
 			"platform/linux/src/**.cpp",
