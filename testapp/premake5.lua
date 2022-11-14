@@ -41,6 +41,10 @@ project "TestApp"
 			"opengl32.lib"
 		}
 
+		nuget {
+			"glew:1.9.0.1", "glfw:3.3.8"
+		}
+
 	filter "system:linux"
 		systemversion "latest"
 
