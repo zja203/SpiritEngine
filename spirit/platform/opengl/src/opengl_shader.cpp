@@ -2,6 +2,7 @@
 #include <fstream>
 #include "utils.hpp"
 #include "platform/opengl/opengl_shader.hpp"
+#include "log.hpp"
 
 namespace Spirit {
 	static GLenum ShaderTypeFromString(const std::string& type) {

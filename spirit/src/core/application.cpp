@@ -3,7 +3,7 @@
 #include "events/app_event.hpp"
 #include "log.hpp"
 #include <GL/glew.h>
-#include <GL/glut.h>
+//#include <GL/glut.h>
 #include "renderer/shader.hpp"
 #include "renderer/renderer.hpp"
 #include <filesystem>

@@ -1,6 +1,6 @@
-#include "sprtpch.h"
-#include "platform/windows/windows_window.hpp"
+#include "sprtpch.hpp"
 #include <GL/glew.h>
+#include "platform/windows/windows_window.hpp"
 
 namespace Spirit {
 	static bool s_GLFWInitialized = false;
@@ -32,6 +32,8 @@ namespace Spirit {
 			s_GLFWInitialized = true;
 		}
 
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
 		int status = glewInit();
@@ -39,7 +41,6 @@ namespace Spirit {
 			SPRT_CORE_ERROR("glew error");
 		}
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-		SetVSync(true);
 	}
 
 	void WindowsWindow::shutdown() {
