@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace Spirit {
-       class SPIRIT_API LayerStack {
+       class LayerStack {
        public:
                LayerStack();
                ~LayerStack();

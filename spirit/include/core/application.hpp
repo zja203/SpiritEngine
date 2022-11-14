@@ -23,7 +23,7 @@ namespace Spirit {
 		ApplicationCommandLineArgs CommandLineArgs;
 	};
 
-	class SPIRIT_API Application {
+	class Application {
 		public:
 			Application();
 			virtual ~Application();

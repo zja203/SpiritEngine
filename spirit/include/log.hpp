@@ -5,7 +5,7 @@
 #include "spdlog/fmt/ostr.h"
 
 namespace Spirit {
-	class SPIRIT_API Log {
+	class Log {
 		public:
 			static void Init();
 

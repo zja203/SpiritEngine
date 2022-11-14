@@ -32,7 +32,7 @@ namespace Spirit {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
 
-	class SPIRIT_API Event {
+	class Event {
 		public:
 			bool Handled = false;
 			virtual EventType getEventType() const = 0;

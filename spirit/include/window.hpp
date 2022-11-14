@@ -16,7 +16,7 @@ namespace Spirit {
 			: Title(title), Width(width), Height(height) { }
 	};
 
-	class SPIRIT_API Window {
+	class Window {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 

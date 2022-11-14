@@ -4,7 +4,7 @@
 #include "events/event.hpp"
 
 namespace Spirit {
-       class SPIRIT_API Layer {
+       class Layer {
        public:
                Layer(const std::string& name = "Layer");
                virtual ~Layer();

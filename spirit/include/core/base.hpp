@@ -9,14 +9,8 @@
 #endif
 
 #ifdef SPRT_PLATFORM_WINDOWS
-	#ifdef SPRT_BUILD_DLL
-		#define SPIRIT_API __declspec(dllexport)
-	#else
-		#define SPIRIT_API __declspec(dllimport)
-	#endif
 	#define SPRT_BREAKDEBUGGER __debugbreak();
 #elif defined(SPRT_PLATFORM_LINUX)
-	#define SPIRIT_API
 	#include <signal.h>
 	#define SPRT_BREAKDEBUGGER raise(SIGTRAP)
 #else

@@ -4,7 +4,7 @@
 #include <sstream>
 
 namespace Spirit {
-	class SPIRIT_API WindowResizeEvent : public Event {
+	class WindowResizeEvent : public Event {
 		public:
 			WindowResizeEvent(unsigned int width, unsigned int height)
 				: m_Width(width), m_Height(height) {}
@@ -24,7 +24,7 @@ namespace Spirit {
 			unsigned int m_Width, m_Height;
 	};
 
-	class SPIRIT_API WindowCloseEvent : public Event {
+	class WindowCloseEvent : public Event {
 		public:
 			WindowCloseEvent() {}
 
@@ -32,7 +32,7 @@ namespace Spirit {
 			EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
-	class SPIRIT_API AppTickEvent : public Event {
+	class AppTickEvent : public Event {
 		public:
 			AppTickEvent() {}
 
@@ -40,7 +40,7 @@ namespace Spirit {
 			EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
-	class SPIRIT_API AppUpdateEvent : public Event {
+	class AppUpdateEvent : public Event {
 		public:
 			AppUpdateEvent() {}
 
@@ -48,7 +48,7 @@ namespace Spirit {
 			EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
-	class SPIRIT_API AppRenderEvent : public Event {
+	class AppRenderEvent : public Event {
 		public:
 			AppRenderEvent() {}
 			EVENT_CLASS_TYPE(AppRender);
