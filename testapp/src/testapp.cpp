@@ -32,7 +32,7 @@ class TestLayer : public Spirit::Layer {
 			Ref<IndexBuffer> m_ib = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 			m_va->setIndexBuffer(m_ib);
 
-			m_Shader = Spirit::Shader::Create("basic.glsl");
+			m_Shader = Spirit::Shader::Create("res/shaders/basic.glsl");
 			m_Shader->Bind();
 			m_Shader->SetUniformMat4f("u_MVP", mainCam.getProjectionMatrix());
 		}
