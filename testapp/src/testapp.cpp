@@ -1,8 +1,8 @@
 #include <Spirit.hpp>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <filesystem>
+#include "renderer/orthographic_camera.hpp"
 
 using Spirit::Ref;
 using Spirit::VertexBuffer;
@@ -21,10 +21,7 @@ class TestLayer : public Spirit::Layer {
 				-0.5f,  0.5f
 			};
 
-			// First 2 numbers -aspect to +aspect 1
-			// Second 2, the second.
-			// So for 16:9, +-1.77 and +-1.
-			glm::mat4 proj = glm::ortho(-1.77f, 1.77f, -1.0f, 1.0f, -1.0f, 1.0f);
+			Spirit::OrthographicCamera mainCam = Spirit::OrthographicCamera(-1.77, 1.77, -1, 1);
 
 			m_va = VertexArray::Create();
 			m_vb = VertexBuffer::Create(positions, sizeof(positions));
@@ -37,7 +34,7 @@ class TestLayer : public Spirit::Layer {
 
 			m_Shader = Spirit::Shader::Create("basic.glsl");
 			m_Shader->Bind();
-			m_Shader->SetUniformMat4f("u_MVP", proj);
+			m_Shader->SetUniformMat4f("u_MVP", mainCam.getProjectionMatrix());
 		}
 
 		void OnUpdate() override {
